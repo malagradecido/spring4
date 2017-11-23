@@ -2,7 +2,7 @@ package com.demo.sprcore.component;
 
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("solicitud")
 public class Pedido {
 	
 	@Override
