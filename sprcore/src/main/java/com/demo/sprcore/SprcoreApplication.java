@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.demo.sprcore.bean.Cotizacion;
 import com.demo.sprcore.bean.Persona;
+import com.demo.sprcore.component.BaseDatos;
 import com.demo.sprcore.component.ModalidadPago;
 import com.demo.sprcore.component.OrdenCompra;
 import com.demo.sprcore.component.Pedido;
@@ -27,7 +28,10 @@ public class SprcoreApplication implements CommandLineRunner {
 	private Cotizacion cotizacion;
 	
 	@Autowired
-	private Pedido pedido;
+	private Pedido pedidoPorInternet;
+	
+	@Autowired
+	private Pedido pedidoEnTienda;
 	
 	@Autowired
 	private Persona persona;
@@ -42,6 +46,9 @@ public class SprcoreApplication implements CommandLineRunner {
 	
 	@Autowired
 	private Tarjeta tarjeta;
+	
+	@Autowired
+	private BaseDatos baseDatos;
 
 	@Override
     public void run(String... args) throws Exception {
@@ -50,10 +57,17 @@ public class SprcoreApplication implements CommandLineRunner {
         System.out.println(cotizacion);
         System.out.println(cotizacion.getProducto());
         System.out.println(cotizacion.getProducto().getListaPrecio());
-        System.out.println(pedido);
+        
+        pedidoPorInternet.setArticulo("Audifonos..");
+        pedidoEnTienda.setArticulo("Par de zapatos..");
+        
+        System.out.println(pedidoPorInternet);
+        System.out.println(pedidoEnTienda);
+        
         System.out.println(persona.trabajar());
         System.out.println(modalidadPago.cobrar());
         System.out.println(tarjeta.disponer());
+        System.out.println(baseDatos.leerDatos());
     }
 
 	public static void main(String[] args) {
