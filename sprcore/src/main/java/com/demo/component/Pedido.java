@@ -1,4 +1,4 @@
-package com.demo.sprcore.component;
+package com.demo.component;
 
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;

@@ -2,7 +2,7 @@ logging:
   level:
     .: error
     org.springframework: ERROR
-    com.demo.sprcore: ERROR
+    com.demo: ERROR
 
 spring:
   profiles:

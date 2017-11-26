@@ -1,4 +1,4 @@
-package com.demo.sprcore;
+package com.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -6,14 +6,14 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.demo.sprcore.bean.Cotizacion;
-import com.demo.sprcore.bean.Persona;
-import com.demo.sprcore.component.BaseDatos;
-import com.demo.sprcore.component.ModalidadPago;
-import com.demo.sprcore.component.OrdenCompra;
-import com.demo.sprcore.component.Pedido;
-import com.demo.sprcore.component.Tarjeta;
-import com.demo.sprcore.properties.ServerProperties;
+import com.demo.bean.Cotizacion;
+import com.demo.bean.Persona;
+import com.demo.component.BaseDatos;
+import com.demo.component.ModalidadPago;
+import com.demo.component.OrdenCompra;
+import com.demo.component.Pedido;
+import com.demo.component.Tarjeta;
+import com.demo.properties.ServerProperties;
 
 @SpringBootApplication
 public class SprcoreApplication implements CommandLineRunner {

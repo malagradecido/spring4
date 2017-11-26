@@ -1,4 +1,4 @@
-package com.demo.sprcore.bean;
+package com.demo.bean;
 
 public class Producto {
 

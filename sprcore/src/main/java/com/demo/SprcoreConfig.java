@@ -1,19 +1,19 @@
-package com.demo.sprcore;
+package com.demo;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 
-import com.demo.sprcore.bean.Cotizacion;
-import com.demo.sprcore.bean.JefeProyecto;
-import com.demo.sprcore.bean.ListaPrecio;
-import com.demo.sprcore.bean.Persona;
-import com.demo.sprcore.bean.Producto;
-import com.demo.sprcore.bean.Programador;
-import com.demo.sprcore.component.BaseDatos;
-import com.demo.sprcore.component.OracleBD;
-import com.demo.sprcore.component.PostgresBD;
+import com.demo.bean.Cotizacion;
+import com.demo.bean.JefeProyecto;
+import com.demo.bean.ListaPrecio;
+import com.demo.bean.Persona;
+import com.demo.bean.Producto;
+import com.demo.bean.Programador;
+import com.demo.component.BaseDatos;
+import com.demo.component.OracleBD;
+import com.demo.component.PostgresBD;
 
 @Configuration
 public class SprcoreConfig {
