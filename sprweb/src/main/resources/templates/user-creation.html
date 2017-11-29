@@ -35,8 +35,9 @@
 	    	<tr><td th:text="#{user.profile}"></td>
 	    	   <td>
 	    	       <select th:field="*{profile}">
-	    	          <option th:each="profile : ${allProfiles}" th:value="${profile}" th:text="${profile}">Profile</option>
+	    	          <option th:each="profile : ${allProfiles}" th:value="${profile.profileId}" th:text="${profile.description}">Profile</option>
 	    	       </select>
+	    	       <a href="#" th:href="@{/app/create-profile}" th:text="#{profile.add-more-profiles}">Add Profile</a>
 	    	   </td>
 	    	</tr>	    		    	
 	        <tr><td colspan="2">

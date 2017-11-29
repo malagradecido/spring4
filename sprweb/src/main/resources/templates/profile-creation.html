@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title th:text="#{app.title}"> Title </title>
+        <link rel="stylesheet" th:href="@{/css/styles.css}"/>
+    </head>
+	<body>
+	    <h1 th:text="#{app.create-profile}">Create</h1>
+	    <form action="#" th:action="@{/app/create-profile}" th:object="${profile}" method="POST">
+	      <table>
+	    	<tr><td th:text="#{profile.id}"/></td>
+	    	    <td>
+	    	       <input type="text" th:field="*{profileId}" />
+	    	       <label th:if="${#fields.hasErrors('profileId')}" th:text="#{error.profile.id}" th:class="'error'">Id Error</label>
+	    	    </td>
+	    	</tr>
+	    	<tr><td th:text="#{profile.description}"></td>
+	    	    <td>
+	    	      <input type="text" th:field="*{description}" />
+	    	      <label th:if="${#fields.hasErrors('description')}" th:text="#{error.profile.desccription}" th:class="'error'">Description Error</label>
+	    	    </td>
+	    	</tr>	    		    	
+	        <tr><td colspan="2">
+	              <input type="submit" th:value="#{user.form.submit}"/> 
+	              <input type="reset" th:value="#{user.form.reset}"/>
+	            </td>
+	        </tr>
+	      </table>  
+	    </form>
+	</body>
+</html>

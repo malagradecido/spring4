@@ -9,12 +9,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.demo.bean.Profile;
 import com.demo.bean.User;
 import com.demo.service.UserService;
 
@@ -31,18 +35,18 @@ public class UserController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("user-creation");
 		mav.addObject("user", new User());
-		mav.addObject("allProfiles", getProfiles());
+		mav.addObject("allProfiles", userService.getAllProfiles());
 		return mav;
 	}
 
 	@PostMapping("create-user")
-	public ModelAndView createUser(@Valid User user, BindingResult result) {
+	public ModelAndView createUser(@Valid User user, Errors result) {
 		ModelAndView mav = new ModelAndView();
 		if (result.hasErrors()) {
 			logger.info("Validation errors while submitting form.");
 			mav.setViewName("user-creation");
 			mav.addObject("user", user);
-			mav.addObject("allProfiles", getProfiles());
+			mav.addObject("allProfiles", userService.getAllProfiles());
 			return mav;
 		}
 		userService.addUser(user);
@@ -52,11 +56,33 @@ public class UserController {
 		return mav;
 	}
 
+	@SuppressWarnings("unused")
 	private List<String> getProfiles() {
 		List<String> list = new ArrayList<>();
 		list.add("Developer");
 		list.add("Manager");
 		list.add("Director");
 		return list;
+	}
+	
+	@RequestMapping(value="create-profile", method=RequestMethod.GET)
+	public String createProfileView(Model model) {
+		Profile profile = new Profile();
+		profile.setDescription("Por Defecto");
+		model.addAttribute("profile", profile);
+		return "profile-creation";
+	}
+	
+	@RequestMapping(value="create-profile", method=RequestMethod.POST)
+	public String createProfile(@Valid Profile profile, BindingResult result, Model model) {
+		if (result.hasErrors()) {
+			logger.info("Validation errors while submitting form.");
+			return "profile-creation";
+		}
+		userService.addProfile(profile);
+		model.addAttribute("user", new User());
+		model.addAttribute("allProfiles", userService.getAllProfiles() );
+		logger.info("Form submitted successfully.");
+		return "redirect:/app/create-user";
 	}
 }
