@@ -1,8 +1,5 @@
 package com.demo.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -13,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -55,15 +53,6 @@ public class UserController {
 		logger.info("Form submitted successfully.");
 		return mav;
 	}
-
-	@SuppressWarnings("unused")
-	private List<String> getProfiles() {
-		List<String> list = new ArrayList<>();
-		list.add("Developer");
-		list.add("Manager");
-		list.add("Director");
-		return list;
-	}
 	
 	@RequestMapping(value="create-profile", method=RequestMethod.GET)
 	public String createProfileView(Model model) {
@@ -83,6 +72,13 @@ public class UserController {
 		model.addAttribute("user", new User());
 		model.addAttribute("allProfiles", userService.getAllProfiles() );
 		logger.info("Form submitted successfully.");
+		return "redirect:/app/create-user";
+	}
+	
+	@RequestMapping(value="delete-user/{userId}", method=RequestMethod.GET)
+	public String deleteUser(@PathVariable String userId) {
+		System.out.println("userId: " + userId);
+		userService.deleteUser(userId);
 		return "redirect:/app/create-user";
 	}
 }

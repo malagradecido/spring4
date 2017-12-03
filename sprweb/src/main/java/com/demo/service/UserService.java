@@ -29,4 +29,9 @@ public class UserService {
 	public void addProfile(Profile profile) {
 		allProfiles.add(profile);
 	}
+	
+	public void deleteUser(String userId) {
+		allUsers.remove(new User(userId));
+		//allUsers.removeIf(user -> user.getUserId().compareTo(userId) == 0);
+	}
 }
